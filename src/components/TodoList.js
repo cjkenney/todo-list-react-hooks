@@ -24,9 +24,9 @@ export default () => {
         value={inputTodo}
         onChange={v => setInputTodo(v.target.value)}
         onKeyDown={handleKeyPress}
-        placeholder='Enter A Task'
+        placeholder='Enter a task'
       ></input>
-      <button onClick={handleNewTodo}>Add Task</button>
+      <button onClick={handleNewTodo}>Add</button>
       <ul>
         {todos.map(todo => (
           <li>{todo}</li>
