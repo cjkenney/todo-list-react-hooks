@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+
+import TodoItem from './TodoItem';
 import { initialTodos } from '../constants/index';
 
 export default () => {
@@ -7,7 +9,7 @@ export default () => {
 
   const handleNewTodo = () => {
     if (inputTodo !== '') {
-      setTodos([...todos, inputTodo]);
+      setTodos([...todos, { title: inputTodo, complete: false }]);
       setInputTodo('');
     }
   };
@@ -29,7 +31,7 @@ export default () => {
       <button onClick={handleNewTodo}>Add</button>
       <ul>
         {todos.map(todo => (
-          <li>{todo}</li>
+          <TodoItem>{todo.title}</TodoItem>
         ))}
       </ul>
     </>
