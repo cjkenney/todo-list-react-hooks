@@ -14,24 +14,31 @@ export default () => {
     }
   };
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     if (event.keyCode === 13) {
       handleNewTodo();
     }
+  };
+
+  const completeTodo = (index) => {
+    setTodos(todos.filter((todo, i) => i !== index));
   };
 
   return (
     <>
       <input
         value={inputTodo}
-        onChange={v => setInputTodo(v.target.value)}
+        onChange={(v) => setInputTodo(v.target.value)}
         onKeyDown={handleKeyPress}
         placeholder='Enter a task'
       ></input>
       <button onClick={handleNewTodo}>Add</button>
       <ul>
-        {todos.map(todo => (
-          <TodoItem>{todo.title}</TodoItem>
+        {todos.map((todo, i) => (
+          <TodoItem key={todo.title}>
+            {todo.title}
+            <button onClick={() => completeTodo(i)}>Complete</button>
+          </TodoItem>
         ))}
       </ul>
     </>

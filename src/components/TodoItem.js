@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default props => {
+export default (props) => {
   return <li>{props.children}</li>;
 };
