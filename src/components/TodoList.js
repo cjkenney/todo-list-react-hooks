@@ -20,8 +20,17 @@ export default () => {
     }
   };
 
-  const completeTodo = (index) => {
-    setTodos(todos.filter((todo, i) => i !== index));
+  const completeTodo = (title) => {
+    setTodos(
+      [...todos].map((todo) => {
+        if (todo.title === title) {
+          return {
+            ...todo,
+            complete: true,
+          };
+        } else return todo;
+      })
+    );
   };
 
   return (
@@ -35,9 +44,11 @@ export default () => {
       <button onClick={handleNewTodo}>Add</button>
       <ul>
         {todos.map((todo, i) => (
-          <TodoItem key={todo.title}>
+          <TodoItem complete={todo.complete} key={todo.title}>
             {todo.title}
-            <button onClick={() => completeTodo(i)}>Complete</button>
+            {!todo.complete && (
+              <button onClick={() => completeTodo(todo.title)}>Complete</button>
+            )}
           </TodoItem>
         ))}
       </ul>
